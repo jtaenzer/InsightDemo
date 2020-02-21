@@ -7,12 +7,14 @@ IDE: PyCharm CE
 
 Interpreter used for testing: python 3.7.6
 
-External dependencies: tensorflow, keras, keras-preprocessing, pandas, numpy, sklearn, matplotlib
+External dependencies: tensorflow, keras, keras-preprocessing, requests, bs4, pandas, numpy, sklearn, matplotlib
 
 ```
 python -m pip install tensorflow --upgrade
 python -m pip install keras --upgrade
 python -m pip install keras-preprocessing --upgrade
+python -m pip install requests --upgrade
+python -m pip install bs4 --upgrade
 python -m pip install pandas --upgrade
 python -m pip install numpy --upgrade
 python -m pip install sklearn --upgrade

@@ -1,16 +1,34 @@
+from sys import exit
 import mysql.connector
 import requests
 from bs4 import BeautifulSoup
-
 import db_config as dbcfg
 
-sql_db = mysql.connector.connect(
-    host=dbcfg.host,
-    user=dbcfg.user,
-    passwd=dbcfg.passwd,
-    database=dbcfg.database
-)
-sql_cursor = sql_db.cursor()
+sql_db = None
+if dbcfg.makedb:
+    sql_db = mysql.connector.connect(
+        host=dbcfg.host,
+        user=dbcfg.user,
+        passwd=dbcfg.passwd,
+    )
+    sql_cursor = sql_db.cursor()
+    try:
+        sql_cursor.execute("CREATE DATABASE %s" % dbcfg.database)
+    except mysql.connector.errors.DatabaseError as err:
+        print(err)
+        exit()
+else:
+    sql_db = mysql.connector.connect(
+        host=dbcfg.host,
+        user=dbcfg.user,
+        passwd=dbcfg.passwd,
+        database=dbcfg.database
+    )
+    sql_cursor = sql_db.cursor()
+
+if not sql_db:
+    print("Couldn't connect to database %s" % dbcfg.database)
+    exit()
 
 teams = ['PIT', 'WSH', 'PHI', 'CAR', 'NYI', 'CBJ', 'NYR', 'NJD', 'BOS', 'TBL', 'TOR', 'FLA', 'BUF', 'MTL', 'OTT', 'DET',
          'STL', 'DAL', 'COL', 'WPG', 'NSH', 'MIN', 'CHI', 'EDM', 'VEG', 'VAN', 'CGY', 'ARI', 'SJS', 'ANA', 'LAK']

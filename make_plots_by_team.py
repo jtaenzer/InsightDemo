@@ -3,6 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import db_config as dbcfg
+import os
+
+try:
+    os.mkdir("%s/plots" % os.getcwd())
+except OSError:
+    pass
 
 sql_db = mysql.connector.connect(
     host=dbcfg.host,

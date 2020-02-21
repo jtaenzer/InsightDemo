@@ -2,6 +2,12 @@ from get_data import get_data
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
+
+try:
+    os.mkdir("%s/plots" % os.getcwd())
+except OSError:
+    pass
 
 years = ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
 

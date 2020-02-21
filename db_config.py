@@ -3,5 +3,5 @@ user = ""
 passwd = ""
 database = ""
 
-schedule = False
-team_gamelog = False
+schedule = True
+team_gamelog = True

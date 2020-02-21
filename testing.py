@@ -3,11 +3,16 @@ from get_data import get_data
 from sklearn.preprocessing import scale
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
-from os import environ
+import os
 # This will stop tensorflow from spamming unnecessary error messages about its GPU implementation
 # Needs to set before we import anything from keras/tensorflow
-environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from keras.models import load_model
+
+try:
+    os.mkdir("%s/plots" % os.getcwd())
+except OSError:
+    pass
 
 years = ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
 
